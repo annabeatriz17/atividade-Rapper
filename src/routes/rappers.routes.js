@@ -39,3 +39,17 @@ suspeitosRoutes.get("/", (req, res) => {
     return res.status(200).json(suspeitos);
   });
 
+
+// Rota para cadastrar um novo suspeito
+suspeitosRoutes.post("/", (req, res) => {
+    const { nome, idade, descriçãoFísica, envolvimento } = req.body;
+  
+    // Validação dos campos obrigatórios
+    if (!nome || !idade || !descriçãoFísica || !envolvimento) {
+      return res.status(400).json({
+        message: "Os campos nome, idade, descricão Física e envolvimento são obrigatórios!",
+      });
+    }
+});
+
+export default suspeitosRoutes;
