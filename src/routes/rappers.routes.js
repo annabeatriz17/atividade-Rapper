@@ -101,5 +101,10 @@ suspeitosRoutes.put("/suspeitos", (req, res) => {
     // Busca um suspeito pelo id no array de suspeito
   const suspeito = suspeitos.find((p) => p.id == id);
 
-  
+    // Validação dos campos obrigatórios
+    if (!nome || !idade || !descriçãoFísica || !envolvimento) {
+        return res.status(400).json({
+          message: "Os campos nome, temperatura e água são obrigatórios!",
+        });
+      }
 export default suspeitosRoutes;
