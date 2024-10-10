@@ -39,6 +39,10 @@ suspeitosRoutes.get("/", (req, res) => {
     return res.status(200).json(suspeitos);
   });
 
+// Rota para buscar um rapper pelo id
+rappersRoutes.get("/:id", (req, res) => {
+    const { id } = req.params;
+});
 
 // Rota para cadastrar um novo suspeito
 suspeitosRoutes.post("/", (req, res) => {
