@@ -107,4 +107,22 @@ suspeitosRoutes.put("/suspeitos", (req, res) => {
           message: "Os campos nome, temperatura e água são obrigatórios!",
         });
       }
+
+      // Validação de existência do suspeito
+  if (suspeito != "sim" && suspeito != "não") {
+    return res.status(400).send({
+      message: "Digite 'sim' ou 'não'!",
+    });
+  }
+
+  suspeito.nome = nome;
+  suspeito.idade = idade;
+  suspeito.descriçãoFísica = descriçãoFísica;
+  suspeito.envolvimento = envolvimento || [];
+
+  return res.status(200).json({
+    message: "Suspeito atualizado com sucesso!",
+    Suspeito,
+  });
+});
 export default suspeitosRoutes;
