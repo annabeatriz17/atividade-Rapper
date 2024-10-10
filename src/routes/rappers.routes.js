@@ -98,5 +98,8 @@ suspeitosRoutes.put("/suspeitos", (req, res) => {
     const { id } = req.params;
     const { nome, idade, descriçãoFísica, envolvimento } = req.body;
 
-}
+    // Busca um suspeito pelo id no array de suspeito
+  const suspeito = suspeitos.find((p) => p.id == id);
+
+  
 export default suspeitosRoutes;
