@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-const routes = Router();
-
 import suspeitosRoutes from "./rappers.routes.js";
+
+const routes = Router();
 
 // Rota raiz para teste
 routes.get("/", (req, res) => {
