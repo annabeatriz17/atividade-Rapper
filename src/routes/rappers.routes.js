@@ -41,9 +41,11 @@ suspeitosRoutes.get("/", (req, res) => {
 
   
   // Rota para cadastrar um novo suspeito
-  suspeitosRoutes.post("/", (req, res) => {
+  suspeitosRoutes.post("/cadastrar", (req, res) => {
       const { nome, idade, descriçãoFísica, envolvimento } = req.body;
       
+console.log(Number.isInteger(idade))
+
     // Validação dos campos obrigatórios
       if (!nome || !idade || !descriçãoFísica || !envolvimento) {
         return res.status(400).json({
@@ -94,7 +96,7 @@ suspeitosRoutes.get("/:id", (req, res) => {
 });
         
 // Rota para atualizar um suspeito pelo id
-suspeitosRoutes.put("/suspeitos", (req, res) => {
+suspeitosRoutes.put("/:id", (req, res) => {
     const { id } = req.params;
     const { nome, idade, descriçãoFísica, envolvimento } = req.body;
 
