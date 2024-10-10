@@ -41,10 +41,10 @@ suspeitosRoutes.get("/", (req, res) => {
 
   
   // Rota para cadastrar um novo suspeito
-  suspeitosRoutes.post("/cadastrar", (req, res) => {
+  suspeitosRoutes.post("/", (req, res) => {
       const { nome, idade, descriçãoFísica, envolvimento } = req.body;
       
-console.log(Number.isInteger(idade))
+console.log(Number.isInteger(idade));
 
     // Validação dos campos obrigatórios
       if (!nome || !idade || !descriçãoFísica || !envolvimento) {
@@ -53,7 +53,7 @@ console.log(Number.isInteger(idade))
     });
 }
  // Validação de existência dos suspeitos
- if (suspeitos != "sim" && suspeitos != "não") {
+ if (envolvimento != "sim" && envolvimento != "não") {
     return res.status(400).send({
       message: "Digite 'sim' ou 'não'!",
     });
@@ -65,7 +65,7 @@ console.log(Number.isInteger(idade))
     nome,
     idade,
     descriçãoFísica,
-    envolvimento: atm || [], // Valor padrão caso atm não seja enviado
+    envolvimento: envolvimento || [], // Valor padrão caso atm não seja enviado
   };
 
   // Adiciona o novo suspeito ao array dos suspeitos
@@ -111,7 +111,7 @@ suspeitosRoutes.put("/:id", (req, res) => {
       }
 
       // Validação de existência do suspeito
-  if (suspeito != "sim" && suspeito != "não") {
+  if (envolvimento != "sim" && envolvimento != "não") {
     return res.status(400).send({
       message: "Digite 'sim' ou 'não'!",
     });
@@ -124,7 +124,32 @@ suspeitosRoutes.put("/:id", (req, res) => {
 
   return res.status(200).json({
     message: "Suspeito atualizado com sucesso!",
-    Suspeito,
+    suspeito,
   });
 });
+
+// Rota para deletar um suspeito
+suspeitosRoutes.delete("/:id", (req, res) => {
+    const { id } = req.params;
+  
+    // Busca um suspeito pelo id no array de suspeitos
+    const suspeito = suspeitos.find((suspects) => suspects.id == id);
+  
+    // Verifica se o suspeito foi encontrado
+    if (!suspeito) {
+      return res
+        .status(404)
+        .json({ message: `Suspeito com id ${id} não encontrado!` });
+    }
+  
+    // Remove o suspeito do array de suspeito
+    suspeitos = suspeitos.filter((suspects) => suspects.id != id);
+  
+    return res.status(200).json({
+      message: "Suspeito removido com sucesso!",
+      suspeito,
+    });
+  });
+  
+
 export default suspeitosRoutes;
