@@ -2,7 +2,7 @@
   "name": "rapper",
   "version": "1.0.0",
   "description": "Projeto para desenvolver cadastro de suspeitos de Investigação do FBI",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,5 +12,10 @@
     "javascript"
   ],
   "author": "Anna Beatriz dev",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  }
 }
